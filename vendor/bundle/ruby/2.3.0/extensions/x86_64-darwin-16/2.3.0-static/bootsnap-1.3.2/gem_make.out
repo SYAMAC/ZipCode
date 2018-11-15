@@ -1,0 +1,15 @@
+current directory: /Users/yamashita/Desktop/YAMAC/garapagos/zip-code/vendor/bundle/ruby/2.3.0/gems/bootsnap-1.3.2/ext/bootsnap
+/Users/yamashita/.rbenv/versions/2.3.0/bin/ruby -r ./siteconf20181114-14941-1tvtium.rb extconf.rb
+creating Makefile
+
+current directory: /Users/yamashita/Desktop/YAMAC/garapagos/zip-code/vendor/bundle/ruby/2.3.0/gems/bootsnap-1.3.2/ext/bootsnap
+make "DESTDIR=" clean
+
+current directory: /Users/yamashita/Desktop/YAMAC/garapagos/zip-code/vendor/bundle/ruby/2.3.0/gems/bootsnap-1.3.2/ext/bootsnap
+make "DESTDIR="
+compiling bootsnap.c
+linking shared-object bootsnap/bootsnap.bundle
+
+current directory: /Users/yamashita/Desktop/YAMAC/garapagos/zip-code/vendor/bundle/ruby/2.3.0/gems/bootsnap-1.3.2/ext/bootsnap
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 bootsnap.bundle ./.gem.20181114-14941-1o96ld7/bootsnap

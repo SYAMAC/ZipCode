@@ -1,0 +1,31 @@
+h1 住所検索
+
+= form_tag(search_by_postal_code_path, method: :post) do
+  = number_field_tag :postal_code, '', maxlength: 7
+  = submit_tag "検索"
+
+= form_tag(search_by_address_path, method: :post) do
+  = text_field_tag :prefecture, ''
+  = text_field_tag :city, ''
+  = text_field_tag :street, ''
+  = submit_tag "検索"
+
+
+table
+  thead
+    tr
+      th 郵便番号
+      th 都道府県
+      th 市区町村
+      th 町名
+- if @address.present?
+  tbody
+    - @addresses.each do |address|
+      tr
+        td
+
+- if @postal_code.present?
+  tbody
+    - @postal_code.each do |address|
+      tr
+        td
