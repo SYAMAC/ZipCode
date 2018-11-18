@@ -1,13 +1,15 @@
 h1 住所検索
 
-= form_tag(search_by_postal_code_path, method: :post) do
-  = number_field_tag :postal_code, '', maxlength: 7
+//なんでか片方の検索でもう一方のpathにも行ってしまう
+//しかも@addressが前のを引きずりすぎている
+= form_tag(search_by_zipcode_path, method: :post) do
+  = number_field_tag :zip_code, @zip_code, maxlength: 7
   = submit_tag "検索"
 
 = form_tag(search_by_address_path, method: :post) do
-  = text_field_tag :prefecture, ''
-  = text_field_tag :city, ''
-  = text_field_tag :street, ''
+  = select_tag :prefecture, options_for_select(@prefectures, :selected => @selected_prefecture), :include_blank => true
+  = text_field_tag :city, @city
+  = text_field_tag :street, @street
   = submit_tag "検索"
 
 
@@ -18,14 +20,11 @@ table
       th 都道府県
       th 市区町村
       th 町名
-- if @address.present?
   tbody
+  - if @addresses.present?
     - @addresses.each do |address|
       tr
-        td
-
-- if @postal_code.present?
-  tbody
-    - @postal_code.each do |address|
-      tr
-        td
+        td = address.zipcode
+        td = address.prefecture
+        td = address.city
+        td = address.street

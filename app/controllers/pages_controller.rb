@@ -1,33 +1,42 @@
 class PagesController < ApplicationController
-  before_action :postal_code_params, only: [:search_by_postal_code]
-  before_action :address_params, only: [:search_by_address]
+  before_action :set_prefectures
+  before_action :set_by_zipcode, only: [:search_by_zipcode]
+  before_action :set_by_address, only: [:search_by_address]
 
   def top
   end
 
-  def search_by_postal_code
-
+  def search_by_zipcode
+    render :top
   end
 
   def search_by_address
+    render :top
   end
 
   private
 
-  def postal_code_params
-    binding.pry
-    params.require(:bill).permit(
-      :cd,
-      :amount,
-      :delivery_on,
-      :acceptance_on,
-      :payment_type,
-      :bill_on,
-      :deposit_on,
-      :memo,
-    )
+  def set_by_zipcode
+    @addresses = if params[:zip_code].blank?
+                   nil
+                 else
+                   Address.zip_code_like(params[:zip_code])
+                 end
+    @zip_code = params[:zip_code]
   end
 
-  def address_params
+  def set_by_address
+    @addresses = if params[:prefecture].blank? && params[:city].blank? && params[:street].blank?
+                   nil
+                 else
+                   Address.prefecture_like(params[:prefecture]).city_like(params[:city]).street_like(params[:street])
+                 end
+    @selected_prefecture = params[:prefecture]
+    @city = params[:city]
+    @street = params[:street]
+  end
+
+  def set_prefectures
+    @prefectures = Address.pluck(:prefecture).uniq!
   end
 end
