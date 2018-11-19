@@ -1,26 +1,20 @@
-# README
+# READ ME
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+### アプリケーションを実行するにあたり、以下の実施をお願いいたします
 
-Things you may want to cover:
+#### 環境構築
+```
+git clone git@github.com:SYAMAC/ZipCode.git
+bundle install --path=vendor/bundle
 
-* Ruby version
+mysql.server start
+mysql -u root
+> create database zip-code_development;
 
-* System dependencies
+bundle exec rake db:create
+bundle exec rake db:migrate
+```
 
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-bundle exec rails runner Tasks::Batch.import_csv_to_database
+#### データの登録
+- consoleより以下を実行(10分〜15分で完了いたします)
+`bundle exec rails runner Tasks::Batch.import_csv_to_database`
