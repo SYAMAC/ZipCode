@@ -17,4 +17,6 @@ bundle exec rake db:migrate
 
 #### データの登録
 - consoleより以下を実行(10分〜15分で完了いたします)
-`bundle exec rails runner Tasks::Batch.import_csv_to_database`
+```
+bundle exec rails runner Tasks::Batch.import_csv_to_database
+```
