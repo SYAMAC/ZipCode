@@ -17,7 +17,8 @@ class Tasks::Batch
           prefecture: row[6],
           city: row[7],
           street: street,
-          postal_code_id: postal_code.id
+          postal_code_id: postal_code.id,
+          zipcode: row[2]
         )
       end
       p "Read Success"
